@@ -1,1 +1,6 @@
-<div>Add Course template here</div>
+<div>
+  <h2><%= @course.title %></h2>
+  <h4><%=  number_to_currency(@course.price, :unit => "€") %></h4>
+  <h4><%= @course.location %></h4>
+</div>
+
