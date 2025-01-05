@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
   def index
-    render(CourseComponent.new(course: Course.find(1)))
+    render(CourseComponent.with_collection(Course.all))
   end
 end
