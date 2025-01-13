@@ -3,10 +3,17 @@
 require "test_helper"
 
 class DiscountComponentTest < ViewComponent::TestCase
-  def test_component_renders_something_useful
-    # assert_equal(
-    #   %(<span>Hello, components!</span>),
-    #   render_inline(DiscountComponent.new(message: "Hello, components!")).css("span").to_html
-    # )
+  def test_render_component
+    course = Course.create(title: 'Organizing your Time', price: 155.00, location: 'London')
+    render_inline(DiscountComponent.new(item: course))
+    assert_selector 'p[class="green"]'
+    assert_text "10% discount"
   end
+
+  def test_component_not_rendered
+    course = Course.create(title: 'Organizing your Time', price: 55.00, location: 'London')
+    render_inline(DiscountComponent.new(item: course))
+    refute_component_rendered
+  end
+
 end
